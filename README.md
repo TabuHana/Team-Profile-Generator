@@ -25,11 +25,11 @@ The technologies used in this project are Node, inquirer and fs-extra.
 
 ***
   ## Visual Presentation
-  ![VisualPresentation](images/readmeVisualPresentation.png)
+  ![VisualPresentation](images/readmeVisualPresentation.gif)
 
 ***
   ## Installation
-  Install via GitHub and run the package requirements.
+  Download via GitHub and run the package requirements.
 
 ***
   ## Usage
@@ -45,5 +45,6 @@ The technologies used in this project are Node, inquirer and fs-extra.
 
 ***
   ## Additional Info
+  - Deplayed Page: https://tabuhana.github.io/Team-Profile-Generator/
   - Github: TabuHana(https://github.com/TabuHana)
   - Email: nate31196@outlook.com
