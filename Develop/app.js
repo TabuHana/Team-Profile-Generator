@@ -33,3 +33,32 @@ const render = require("./lib/htmlRenderer");
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+
+let employeeSystem = []
+
+inquirer.prompt([
+  {
+    type: 'input',
+    name: 'managerName',
+    message: 'What is the team manager\'s name?'
+  },
+  {
+    type: 'input',
+    name: 'managerID',
+    message: 'What is the team manager\'s ID?'
+  },
+  {
+    type: 'input',
+    name: 'managerEmail',
+    message: 'What is the team manager\'s email?'
+  },
+  {
+    type: 'input',
+    name: 'managerOfficeNumber',
+    message: 'What is the team manager\'s office number?'
+  }
+])
+  .then(manager => {
+    let newManager = new Manager(manager.managerName, manager.managerID, manager.managerEmail, manager.managerOfficeNumber)
+    employeeSystem.push(newManager)
+  })
