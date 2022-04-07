@@ -1,14 +1,15 @@
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-const inquirer = require("inquirer");
-const path = require("path");
-const fs = require("fs");
+const Manager = require("./lib/Manager")
+const Engineer = require("./lib/Engineer")
+const Intern = require("./lib/Intern")
+const inquirer = require("inquirer")
+const path = require("path")
+const fs = require("fs")
+const fse = require('fs-extra')
 
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
+const OUTPUT_DIR = path.resolve(__dirname, "output")
+const outputPath = path.join(OUTPUT_DIR, "team.html")
 
-const render = require("./lib/htmlRenderer");
+const render = require("./lib/htmlRenderer")
 
 
 // Write code to use inquirer to gather information about the development team members,
@@ -36,7 +37,23 @@ const render = require("./lib/htmlRenderer");
 
 let employeeSystem = []
 
-
+const addMoreMembers = () => {
+  inquirer.prompt([
+    {
+      type: 'list',
+      name: 'moreMemebers',
+      message: 'Would you like to add more team members?',
+      choices: ['Yes', 'No']
+    }
+  ])
+  .then(answer => {
+    if (answer.moreMemebers === 'Yes'){
+      newEmployee()
+    } else if (answer.moreMemebers === 'No') {
+      console.log(employeeSystem)
+    }
+  })
+}
 
 const newEmployee = () => {
   inquirer.prompt([{
@@ -72,7 +89,7 @@ const newEmployee = () => {
           .then(engineer => {
             let newEngineer = new Engineer(engineer.engineerName, engineer.engineerID, engineer.engineerEmail, engineer.engineerGithub)
             employeeSystem.push(newEngineer)
-            console.log(employeeSystem)
+            addMoreMembers()
           })
       } else if (response.employeeRole === 'Intern') {
         inquirer.prompt([
@@ -100,7 +117,7 @@ const newEmployee = () => {
           .then(intern => {
             let newIntern = new Intern(intern.internName, intern.internID, intern.internEmail, intern.internSchool)
             employeeSystem.push(newIntern)
-            console.log(employeeSystem)
+            addMoreMembers()
           })
       } 
     })
