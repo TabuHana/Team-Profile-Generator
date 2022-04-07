@@ -36,6 +36,76 @@ const render = require("./lib/htmlRenderer");
 
 let employeeSystem = []
 
+
+
+const newEmployee = () => {
+  inquirer.prompt([{
+    type: 'list',
+    name: 'employeeRole',
+    message: 'Please select an employee type: ',
+    choices: ['Engineer', 'Intern']
+  }])
+    .then(response => {
+      if (response.employeeRole === 'Engineer') {
+        inquirer.prompt([
+          {
+            type: 'input',
+            name: 'engineerName',
+            message: 'What is the engineer\'s name?'
+          },
+          {
+            type: 'input',
+            name: 'engineerID',
+            message: 'What is the engineer\'s ID?'
+          },
+          {
+            type: 'input',
+            name: 'engineerEmail',
+            message: 'What is the engineer\'s email?'
+          },
+          {
+            type: 'input',
+            name: 'engineerGithub',
+            message: 'What is the engineer\'s github?'
+          }
+        ])
+          .then(engineer => {
+            let newEngineer = new Engineer(engineer.engineerName, engineer.engineerID, engineer.engineerEmail, engineer.engineerGithub)
+            employeeSystem.push(newEngineer)
+            console.log(employeeSystem)
+          })
+      } else if (response.employeeRole === 'Intern') {
+        inquirer.prompt([
+          {
+            type: 'input',
+            name: 'internName',
+            message: 'What is the intern\'s name?'
+          },
+          {
+            type: 'input',
+            name: 'internID',
+            message: 'What is the intern\'s ID?'
+          },
+          {
+            type: 'input',
+            name: 'internEmail',
+            message: 'What is the intern\'s email?'
+          },
+          {
+            type: 'input',
+            name: 'internSchool',
+            message: 'What is the intern\'s school?'
+          }
+        ])
+          .then(intern => {
+            let newIntern = new Intern(intern.internName, intern.internID, intern.internEmail, intern.internSchool)
+            employeeSystem.push(newIntern)
+            console.log(employeeSystem)
+          })
+      } 
+    })
+}
+
 inquirer.prompt([
   {
     type: 'input',
@@ -61,4 +131,7 @@ inquirer.prompt([
   .then(manager => {
     let newManager = new Manager(manager.managerName, manager.managerID, manager.managerEmail, manager.managerOfficeNumber)
     employeeSystem.push(newManager)
+    console.log(employeeSystem)
+    newEmployee()
   })
+
