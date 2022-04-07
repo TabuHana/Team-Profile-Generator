@@ -37,6 +37,19 @@ const render = require("./lib/htmlRenderer")
 
 let employeeSystem = []
 
+const builtTeam = () => {
+  let newTeamHTML = render(employeeSystem)
+  //Grabbed from stackoverflow: https://stackoverflow.com/questions/13542667/create-directory-when-writing-to-file-in-node-js
+
+  fse.outputFile('output/team.html', newTeamHTML)
+    .then(() => {
+      console.log('The file has been saved!')
+    })
+    .catch(err => {
+      console.error(err)
+    })
+}
+
 const addMoreMembers = () => {
   inquirer.prompt([
     {
