@@ -64,6 +64,7 @@ const addMoreMembers = () => {
       newEmployee()
     } else if (answer.moreMemebers === 'No') {
       console.log(employeeSystem)
+      builtTeam()
     }
   })
 }
